@@ -14,18 +14,18 @@ const state = {
   actions: {
     timerId: setInterval(randomSquare, 1000),
     countdownTimerId: setInterval(countDown, 1000),
-  }
+  },
 };
 
 function countDown() {
-    state.values.currentTime--;
-    state.view.timeLeft.textContent = state.values.currentTime;
+  state.values.currentTime--;
+  state.view.timeLeft.textContent = state.values.currentTime;
 
-    if (state.values.currentTime <= 0) {
-        clearInterval(state.actions.countdownTimerId);
-        clearInterval(state.actions.timerId)
-        alert("Game Over! o seu resultado foi: " + state.values.result);
-    }
+  if (state.values.currentTime <= 0) {
+    clearInterval(state.actions.countdownTimerId);
+    clearInterval(state.actions.timerId);
+    alert("Game Over! o seu resultado foi: " + state.values.result);
+  }
 }
 
 function playSound(audioName) {
@@ -50,16 +50,16 @@ function moveEnemy() {
 }
 
 function addListenerHitbox(params) {
-    state.view.squares.forEach((square) => {
-        square.addEventListener('mousedown', () => {
-            if (square.id === state.values.hitPosition) {
-                state.values.result++;
-                state.view.score.textContent = state.values.result;
-                state.values.hitPosition = null;
-                playSound('hit');
-            }
-        });
+  state.view.squares.forEach((square) => {
+    square.addEventListener("mousedown", () => {
+      if (square.id === state.values.hitPosition) {
+        state.values.result++;
+        state.view.score.textContent = state.values.result;
+        state.values.hitPosition = null;
+        playSound("hit");
+      }
     });
+  });
 }
 
 function initialize() {
